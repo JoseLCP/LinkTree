@@ -1,0 +1,232 @@
+/*O uso do * funciona como universal*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --text--color: white;
+    --bg--url: url(./assets/bg-mobile.jpg);
+    --stroke--color: rgba(255, 255, 255, 0.5);
+    --surface--color: rgba(255, 255, 255, 0.1);
+    --surface--color--hover: rgba(255, 255, 255, 0.5);
+    --switch-bg-url: url(./assets/moon-stars.svg);
+}
+
+.light{
+    --text--color: black;
+    --bg--url: url(./assets/bg-mobile-light.jpg);
+    --stroke--color: rgba(0, 0, 0, 0.5);
+    --surface--color: rgba(0, 0, 0, 0.05);
+    --surface--color--hover: rgba(0, 0, 0, 0.02);
+    --switch-bg-url: url(./assets/sun.svg);
+}
+
+body{
+    /*Atalho para otimizar o que está acima*/
+    background: var(--bg--url) no-repeat top center/cover;
+    height: 100vh;
+}
+
+body *{
+    font-family: "Inter", sans-serif;
+    color: var(--text--color);
+}
+
+p{
+    font-weight: bold;
+}
+
+#config{
+    width: 100%;
+    max-width: 588px;
+    margin: 56px auto 0px;
+    padding: o 24px;
+}
+
+#perfil{
+    text-align: center;
+    padding: 24px;
+    margin-top: 8px;
+}
+
+#perfil img {
+    width: 112px;
+}
+
+#perfil p{
+    font-weight: 500;
+    line-height: 24px;
+}
+
+/*SWITCH*/
+
+#switch{
+    position: relative;
+    width: 64px;
+    margin: 4px auto;
+}
+
+#switch button{
+    width: 32px;
+    height: 32px;
+    background: white var(--switch-bg-url) no-repeat center;
+    border: 0px;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 1;
+    transform: translateY(-50%);
+
+    animation: lighttodark 0.5s;
+}
+
+#switch span{
+    display: block;
+    width: 64px;
+    height: 24px;
+    background: var(--surface--color);
+    border: 1px solid var(--stroke--color);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 9999px;
+}
+
+.light #switch button{
+    animation: darktolight 0.5s forwards;
+}
+
+
+/*links*/
+
+ul{
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px 0;
+}
+
+ul li a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 16px 24px;
+
+    background-color: var(--surface--color); /* o último elemento (chamado de alpha) de cores é a opacidade, neste caso o 0.1 de opacidade*/
+    border: 1px solid var(--stroke--color);
+    border-radius: 8px;
+
+    backdrop-filter: blur(4px);
+
+    -webkit-backdrop-filter: blur(4px);
+
+    text-decoration: none;
+
+    font-weight: 500;
+
+    transition: background 0.2s; /*Tempo de resposta na transição com o hover ao passar o mouse na opção*/
+}
+
+/*Uso do pseudo-selector hover, que é quando passar o mouse por cima, o fundo mudar de cor*/
+ul li a:hover{
+    background-color: var(--surface--color--hover);
+    border: 2px solid var(--text--color);
+}
+
+/*Ícones de Midias Sociais*/
+#midias-sociais{
+    display: flex;
+    gap: 16px;
+
+    padding: 24px 0;
+
+    font-size: 24px;
+
+    justify-content: center;
+}
+
+#midias-sociais a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+/*Classes para estilo dos ícones das Mídias Sociais*/
+.github :hover{
+    background-color: grey;
+    border-radius: 50%;
+    display: flex;
+    border: 10px solid grey;
+    transition: 0.2s;
+}
+
+.linkedin :hover{
+    background-color: #0e76a8;
+    border-radius: 50%;
+    display: flex;
+    border: 10px solid #0e76a8;
+    transition: 0.2s;
+}
+
+.instagram :hover{
+    background-color: tomato;
+    border-radius: 50%;
+    display: flex;
+    border: 10px solid tomato;
+    transition: 0.2s;
+}
+
+.whatsapp :hover{
+    background-color: green;
+    border-radius: 50%;
+    display: flex;
+    border: 10px solid green;
+    transition: 0.2s;
+}
+
+/*Rodapé*/
+footer{
+    padding: 24px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer a{
+    color: magenta;
+}
+
+/* Media Queries*/
+@media (min-width: 700px){
+    :root{
+        --bg-url: url(./assets/bg-desktop.jpg);
+    }
+
+    .light{
+        --bg-url: url(./assets/bg-desktop-light.jpg);
+    }
+}
+
+/*Animação do botão*/
+@keyframes darktolight{
+    from {
+        left: 0;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+@keyframes lighttodark{
+    from {
+        left: 50%;
+    }
+    to {
+        left: 0%;
+    }
+}
